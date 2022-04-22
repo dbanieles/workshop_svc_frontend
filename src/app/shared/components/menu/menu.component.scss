@@ -1,0 +1,17 @@
+
+.menu__bar {
+    background: rgba(48,48,48,1);
+    height: 80px;
+    width: 100%;
+    
+    &__logo{
+        color: white;
+        margin-left: 10px;
+    }
+
+    &__user{
+        color: white;
+        margin-right: 10px;
+
+    }
+}

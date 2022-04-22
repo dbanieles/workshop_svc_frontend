@@ -1,0 +1,24 @@
+<div class="template" *ngIf="(templates$ | async);else emptyContent">
+    <div class="template__inner" id="js-scene">
+      <div *ngFor="let template of (templates$ | async)" class="template__layer layer" data-depth="0.85" draggable="true" (dragstart)="onDrag($event, template.id)" width="336" height="69">
+        <div class="template__item" [data-title]="template.name">
+          <div style="display: none;color: black;" class="test">{{template.name}}</div>
+          <div style="display: none;color: black;" class="test">{{template.description}}</div>
+        </div>
+      </div>
+      <div class="template__layer layer" data-depth="0.00" (drop)="onDrop($event)" (dragover)="onAllowToDrop($event)">
+        <div class="template__item" data-title="">
+          <div class="drop__zone">
+            <img src="../../../../../assets/icons/icon-message.png" alt="icon-message" class="drop__zone__icon">
+            <span class="drop__zone__text">DROP HERE!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #emptyContent>
+    <div class="template__empty__container">
+      <img src="../../../../../assets/icons/empty_content.png" alt="empty-content" class="drop__zone__icon">
+    </div>
+  </ng-template>

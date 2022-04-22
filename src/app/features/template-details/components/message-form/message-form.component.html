@@ -1,0 +1,48 @@
+
+<form [formGroup]="messageForm?.asFormGroup">
+  <div class="messages__chat">
+
+    <div class="messages__chat__header">
+      <figure class="avatar">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxq2FbsI6Kv2x9hSJIzCtNn8Y13HoHMBSyJw&usqp=CAU" />
+      </figure>
+      <mat-form-field class="message__chat__header__input">
+        <mat-chip-list #emailList aria-label="Email selection">
+          <mat-chip
+            *ngFor="let receiver of messageForm.receiversList"
+            [selectable]="config.selectable"
+            [removable]="config.removable"
+            (removed)="messageForm.removeReceiverToList(receiver)">
+            {{receiver}}
+            <mat-icon matChipRemove *ngIf="config.removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="Search email..."
+            #emailInput
+            [formControlName]="'receivers'"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="emailList"
+            [matChipInputSeparatorKeyCodes]="config.separatorKeysCodes"
+            (matChipInputTokenEnd)="messageForm.addReceiverToList($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="messageForm.selectReceiverToList($event, emailInput)">
+            <mat-option *ngFor="let email of messageForm.emailFiltered$ | async" [value]="email">
+              {{email}}
+            </mat-option>
+          </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="messages__chat__contianer">
+      <div class="messages__chat__contianer__list" #messages></div>
+    </div>
+
+    <div class="messages__chat__footer">
+      <textarea type="text" class="messages__chat__footer__input" placeholder="Type message..." [formControlName]="'content'"></textarea>
+      <button type="submit" class="messages__chat__footer__button" [params]="messages" [clickEvent]="messageForm.messageHandler.saveBtnClicked" [disabled]="false">
+        Send 
+      </button>
+    </div>
+
+  </div>
+</form>

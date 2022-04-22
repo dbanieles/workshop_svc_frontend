@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+
+html{
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+
+    body{
+        overflow: hidden;
+        margin: 0px!important;
+        height: 100%;
+        width: 100%;
+        margin: 0; 
+        font-family: "Courier new", monospace!important;
+
+    }
+}
+
+
+.blankTheme {
+    background-color: white!important;
+}
+
+.redTheme {
+   background-color: rgba(255, 34, 38, 0.8)!important;
+}
+
+.blueTheme {
+   background-color: #4D4DFF!important;
+}
+
+.greenTheme {
+    background-color: rgba(121, 254, 12,0.8)!important;
+}
+
+.pinkTheme {
+    background-color: rgba(255, 14, 243, 0.8)!important;
+}
